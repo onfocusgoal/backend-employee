@@ -1,4 +1,4 @@
-const ErrorResponse = require("../utils/errorResponse");
+const ErrorResponse = require("../utils/ErrorResponse");
 
 const errorHandler = (err, req, res, next) => {
 	let error = { ...err };
@@ -15,11 +15,6 @@ const errorHandler = (err, req, res, next) => {
 
 		error = new ErrorResponse(message, 400);
 	}
-
-	// if (err.message.startsWith("Reservoir validation failed: email")) {
-	//   const message = "Please provide a valid email address";
-	//   error = new ErrorResponse(message, 400);
-	// }
 
 	res.status(error.statusCode || 500).json({
 		success: false,
